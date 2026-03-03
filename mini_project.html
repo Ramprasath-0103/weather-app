@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<head>
+
+    <title>Weather-App(24BCE0176)</title>
+    <link rel="stylesheet" href="project.css"/>
+
+    <style>
+
+        .container 
+        {
+            display: flex;
+            gap: 10px;        
+        }
+
+        .box 
+        {
+            flex: 1;            
+            height: 50px;
+            background: lightblue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head> 
+<body>
+   
+    <div style="padding: 30px; background-color: white; border: 2px solid white; border-radius: 20px; margin: 100px;background-color: rgb(209, 209, 240);">
+        <div style="background-color: antiquewhite;border: black 3px dotted; padding: 5px 45px;"> 
+            <p style="font-family: 'Times New Roman', Times, serif; font-size: 32px;text-align: center;">Weather App</p>
+        </div>
+        <br>
+        <form>
+        <input type="radio" name="temperature" value="Celsius" id="w-celsius">
+        <label style="font-size: 20px;">Celsius</label>
+        <input type="radio" name="temperature" value="Fahrenheit" id="w-fahrenheit">
+        <label style="font-size: 20px;">Fahrenheit</label>
+        <br> 
+        <br>
+        <legend style="font-size: 32px;margin-left: 30px;">Search City</legend>
+        <br>
+        <select style="height: 25px;width: 105;margin-left: 30px; padding-right: 10px; " name="City">
+            <option>Chennai</option>
+            <option>Shimla</option>
+            <option>Trichy</option>
+            <option>Bangalore</option>
+        </select>
+        <input style="margin-left: 10px;" type="button" value="Submit" onclick="DisplayWeather(this.form)"/>
+        </form>
+        <br>
+        <br>
+        <br>
+        <div style="border:1px solid white;border-radius:15px;margin: 35px;background-color: azure;">
+            <p style="font-family: 'Times New Roman', Times, serif; font-size: 32px;text-align: center;">Current Weather</p>
+            <br>
+            <hr>
+            <p style="margin-left:30px; font-size: 20px;" id="place"></p>
+            <p style="margin-left:30px; font-size: 20px;" id="temperature"></p>
+            <p style="margin-left:30px; font-size: 20px;" id="Humidity"></p>
+            <p style="margin-left:30px; font-size: 20px;" id="Wind"></p>
+        </div>
+        <br>
+        <div>
+            <p style="border:1px solid white;border-radius:15px;margin: 35px;height: 45px;   display:flex;align-items:center;justify-content:center;margin-top: 5px;" id="precaution"></p>
+        </div>
+        <hr>
+        <div style="border:1px solid white;border-radius:15px;margin: 35px;background-color: azure;">
+            <p style="font-family: 'Times New Roman', Times, serif; font-size: 32px;text-align: center;">5 Day Forecast </p>
+
+            <div id="container">
+                <div class="box" id="box-1"></div>
+                <div class="box" id="box-2"></div>
+                <div class="box" id="box-3"></div>
+                <div class="box" id="box-4"></div>
+                <div class="box" id="box-5"></div>
+            </div>
+            
+        </div>
+        <br>
+        <br>
+        <br>
+        <hr>
+        <footer style="padding-top: 5px;text-align: center; font-size: 18px;">RAMPRASATH RP | 24BCE0176 | &copy; Rights Resereved | PRP-231 </footer>
+    </div>
+
+    <script>
+        function DisplayWeather(form)
+        {
+            const city = form.elements['City'].value;
+            const format = form.elements['temperature'].value;
+            const temp = document.getElementById("temperature");
+            const place = document.getElementById("place");
+            const humidity = document.getElementById("Humidity");
+            const wind = document.getElementById("Wind");
+            const precaution = document.getElementById("precaution");
+
+            if (city==="Chennai")
+            {
+                const tempr = "36.7";
+                const temp_f = `${9/5*Number(tempr)+32}`;
+                if (format==="Celsius")
+                {
+                    place.innerHTML = `Place : ${city}`;
+                    temp.innerHTML = `Temperature : ${tempr} C`;
+                    humidity.innerHTML = "Humidity : 35%";
+                    wind.innerHTML = "Wind Speed : 12 km/h";
+                }
+                else
+                {
+                    place.innerHTML = `Place : ${city}`;
+                    temp.innerHTML = `Temperature : ${Number(temp_f).toFixed(1)} °F`;                    
+                    humidity.innerHTML = "Humidity : 35%";
+                    wind.innerHTML = "Wind Speed : 12 km/h";
+                }
+
+
+
+                if (Number(tempr)>=38)
+                {
+                    precaution.style.backgroundColor = "red";
+                    precaution.innerHTML = "It's hot, please wear loose clothes and wear sunscreen while going out";
+                }
+                else if (Number(tempr)<=20)
+                {
+                    precaution.style.backgroundColor = "red";
+                    precaution.innerHTML = "It's cold, please wear tight clothes and wear moisturizer while going out";
+                }
+                else
+                {
+                    precaution.style.backgroundColor = "green";
+                    precaution.innerHTML = "Enjoy the pleasent weather";    
+                }
+
+
+            }
+            else if (city==="Bangalore")
+            {
+                const tempr = "21.5";
+                const temp_f = `${9/5*Number(tempr)+32}`;
+                if (format==="Celsius")
+                {
+                    place.innerHTML = `Place : ${city}`;
+                    temp.innerHTML = `Temperature : ${tempr} C`;
+                    humidity.innerHTML = "Humidity : 35%";
+                    wind.innerHTML = "Wind Speed : 12 km/h";
+                }
+                else
+                {
+                    place.innerHTML = `Place : ${city}`;
+                    temp.innerHTML = `Temperature : ${Number(temp_f).toFixed(1)} °F`;                    
+                    humidity.innerHTML = "Humidity : 35%";
+                    wind.innerHTML = "Wind Speed : 12 km/h";
+                }
+
+
+
+                if (Number(tempr)>=38)
+                {
+                    precaution.style.backgroundColor = "red";
+                    precaution.innerHTML = "It's hot, please wear loose clothes and wear sunscreen while going out";
+                }
+                else if (Number(tempr)<=20)
+                {
+                    precaution.style.backgroundColor = "red";
+                    precaution.innerHTML = "It's cold, please wear tight clothes and wear moisturizer while going out";
+                }
+                else
+                {
+                    precaution.style.backgroundColor = "green";
+                    precaution.innerHTML = "Enjoy the pleasent weather";    
+                }
+
+
+            }
+            else if (city==="Shimla")
+            {
+                const tempr = "17.2";
+                const temp_f = `${9/5*Number(tempr)+32}`;
+                if (format==="Celsius")
+                {
+                    place.innerHTML = `Place : ${city}`;
+                    temp.innerHTML = `Temperature : ${tempr} C`;
+                    humidity.innerHTML = "Humidity : 35%";
+                    wind.innerHTML = "Wind Speed : 12 km/h";
+                }
+                else
+                {
+                    place.innerHTML = `Place : ${city}`;
+                    temp.innerHTML = `Temperature : ${Number(temp_f).toFixed(1)} °F`;                    
+                    humidity.innerHTML = "Humidity : 35%";
+                    wind.innerHTML = "Wind Speed : 12 km/h";
+                }
+
+
+                if (Number(tempr)>=38)
+                {
+                    precaution.style.backgroundColor = "red";
+                    precaution.innerHTML = "It's hot, please wear loose clothes and wear sunscreen while going out";
+                }
+                else if (Number(tempr)<=20)
+                {
+                    precaution.style.backgroundColor = "red";
+                    precaution.innerHTML = "It's cold, please wear tight clothes and wear moisturizer while going out";
+                }
+                else
+                {
+                    precaution.style.backgroundColor = "green";
+                    precaution.innerHTML = "Enjoy the pleasent weather";    
+                }
+
+            }
+            else if (city==="Trichy")
+            {
+                const tempr = "39.7";
+                const temp_f = `${9/5*Number(tempr)+32}`;
+                if (format==="Celsius")
+                {
+                    place.innerHTML = `Place : ${city}`;
+                    temp.innerHTML = `Temperature : ${tempr} C`;
+                    humidity.innerHTML = "Humidity : 35%";
+                    wind.innerHTML = "Wind Speed : 12 km/h";
+                }
+                else
+                {
+                    place.innerHTML = `Place : ${city}`;
+                    temp.innerHTML = `Temperature : ${Number(temp_f).toFixed(1)} °F`;                    
+                    humidity.innerHTML = "Humidity : 35%";
+                    wind.innerHTML = "Wind Speed : 12 km/h";
+                }
+
+
+
+                if (Number(tempr)>=38)
+                {
+                    precaution.style.backgroundColor = "red";
+                    precaution.innerHTML = "It's hot, please wear loose clothes and wear sunscreen while going out";
+                }
+                else if (Number(tempr)<=20)
+                {
+                    precaution.style.backgroundColor = "red";
+                    precaution.innerHTML = "It's cold, please wear tight clothes and wear moisturizer while going out";
+                }
+                else
+                {
+                    precaution.style.backgroundColor = "#90EE90";
+                    precaution.innerHTML = "Enjoy the pleasent weather";    
+                }
+
+
+            }
+        }
+    </script>
+</body>
+</html>

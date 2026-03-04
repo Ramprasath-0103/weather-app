@@ -6,35 +6,38 @@
 
     <style>
 
-        .container 
+        #container
         {
-            display: flex;
-            gap: 10px;        
+            display:flex;
+            gap:10px;
         }
 
-        .box 
+        .box
         {
-            flex: 1;            
-            height: 50px;
-            background: lightblue;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background:lightblue;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:200px;
         }
+
     </style>
 </head> 
-<body>
+<body style="display: flex; justify-content: center; ">
    
-    <div style="padding: 30px; background-color: white; border: 2px solid white; border-radius: 20px; margin: 100px;background-color: rgb(209, 209, 240);">
-        <div style="background-color: antiquewhite;border: black 3px dotted; padding: 5px 45px;"> 
-            <p style="font-family: 'Times New Roman', Times, serif; font-size: 32px;text-align: center;">Weather App</p>
+    <div style="display:block; justify-content: center;padding: 30px; border: 2px solid white; border-radius: 20px; margin: 100px; width:45%" id="app-background"> 
+        <div style="border: white 10px double;border-radius: 10px; padding: 5px 45px;" id="weather-forecast"> 
+            <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Times, serif; font-size: 40px;text-align: center; font-weight:700;">Weather App</p>
         </div>
         <br>
         <form>
-        <input type="radio" name="temperature" value="Celsius" id="w-celsius">
-        <label style="font-size: 20px;">Celsius</label>
-        <input type="radio" name="temperature" value="Fahrenheit" id="w-fahrenheit">
-        <label style="font-size: 20px;">Fahrenheit</label>
+            <div id="unit-temperature">
+            <p>UNIT FOR TEMPERATURE</p>
+            <input type="radio" name="temperature" value="Celsius" id="w-celsius">
+            <label style="font-size: 20px;">Celsius</label>
+            <input type="radio" name="temperature" value="Fahrenheit" id="w-fahrenheit">
+            <label style="font-size: 20px;">Fahrenheit</label>
+            </div>
         <br> 
         <br>
         <legend style="font-size: 32px;margin-left: 30px;">Search City</legend>
@@ -54,12 +57,16 @@
             <p style="font-family: 'Times New Roman', Times, serif; font-size: 32px;text-align: center;">Current Weather</p>
             <br>
             <hr>
+            <p style="margin-left:30px; font-size: 20px;" id="weather"></p>
             <p style="margin-left:30px; font-size: 20px;" id="place"></p>
             <p style="margin-left:30px; font-size: 20px;" id="temperature"></p>
             <p style="margin-left:30px; font-size: 20px;" id="Humidity"></p>
             <p style="margin-left:30px; font-size: 20px;" id="Wind"></p>
         </div>
         <br>
+        <div>
+            <p  id="warning"></p>
+        </div>
         <div>
             <p style="border:1px solid white;border-radius:15px;margin: 35px;height: 45px;   display:flex;align-items:center;justify-content:center;margin-top: 5px;" id="precaution"></p>
         </div>
@@ -68,13 +75,23 @@
             <p style="font-family: 'Times New Roman', Times, serif; font-size: 32px;text-align: center;">5 Day Forecast </p>
 
             <div id="container">
-                <div class="box" id="box-1"></div>
-                <div class="box" id="box-2"></div>
-                <div class="box" id="box-3"></div>
-                <div class="box" id="box-4"></div>
-                <div class="box" id="box-5"></div>
+                <div class="box" id="box-1">
+                    <img src="weather-forecast/box-1.png" height="185px"/>
+                </div>
+                <div class="box" id="box-2">
+                    <img src="weather-forecast/box-2.png" height="185px"/>
+                </div>
+                <div class="box" id="box-3">
+                    <img src="weather-forecast/box-3.png" height="185px"/>
+                </div>
+                <div class="box" id="box-4">
+                    <img src="weather-forecast/box-4.png" height="185px"/>
+                </div>
+                <div class="box" id="box-5">
+                    <img src="weather-forecast/box-5.png" height="185px"/>
+                </div>
             </div>
-            
+
         </div>
         <br>
         <br>
@@ -86,6 +103,8 @@
     <script>
         function DisplayWeather(form)
         {
+
+            
             const city = form.elements['City'].value;
             const format = form.elements['temperature'].value;
             const temp = document.getElementById("temperature");
@@ -93,6 +112,14 @@
             const humidity = document.getElementById("Humidity");
             const wind = document.getElementById("Wind");
             const precaution = document.getElementById("precaution");
+            const warning = document.getElementById("warning");
+            const weather = document.getElementById("weather");
+
+            if (!format)
+            {
+                alert("Temperature in Celsius or Fahrenheit");
+                return;
+            }
 
             if (city==="Chennai")
             {
@@ -100,6 +127,7 @@
                 const temp_f = `${9/5*Number(tempr)+32}`;
                 if (format==="Celsius")
                 {
+                    weather.innerHTML = "Weather : Sunny";
                     place.innerHTML = `Place : ${city}`;
                     temp.innerHTML = `Temperature : ${tempr} C`;
                     humidity.innerHTML = "Humidity : 35%";
@@ -107,6 +135,7 @@
                 }
                 else
                 {
+                    weather.innerHTML = "Weather : Sunny";
                     place.innerHTML = `Place : ${city}`;
                     temp.innerHTML = `Temperature : ${Number(temp_f).toFixed(1)} °F`;                    
                     humidity.innerHTML = "Humidity : 35%";
@@ -117,13 +146,19 @@
 
                 if (Number(tempr)>=38)
                 {
+
                     precaution.style.backgroundColor = "red";
                     precaution.innerHTML = "It's hot, please wear loose clothes and wear sunscreen while going out";
+
+
+                    warning.innerHTML = "warning";
                 }
                 else if (Number(tempr)<=20)
                 {
                     precaution.style.backgroundColor = "red";
                     precaution.innerHTML = "It's cold, please wear tight clothes and wear moisturizer while going out";
+
+                    warning.innerHTML = "warning";
                 }
                 else
                 {
@@ -135,6 +170,7 @@
             }
             else if (city==="Bangalore")
             {
+                weather.innerHTML = "Weather : Cloudy";
                 const tempr = "21.5";
                 const temp_f = `${9/5*Number(tempr)+32}`;
                 if (format==="Celsius")
@@ -146,6 +182,7 @@
                 }
                 else
                 {
+                    weather.innerHTML = "Weather : Cloudy";
                     place.innerHTML = `Place : ${city}`;
                     temp.innerHTML = `Temperature : ${Number(temp_f).toFixed(1)} °F`;                    
                     humidity.innerHTML = "Humidity : 35%";
@@ -158,11 +195,19 @@
                 {
                     precaution.style.backgroundColor = "red";
                     precaution.innerHTML = "It's hot, please wear loose clothes and wear sunscreen while going out";
+
+
+                    warning.style.color = "red";
+                    warning.innerHTML = "warning";
                 }
                 else if (Number(tempr)<=20)
                 {
                     precaution.style.backgroundColor = "red";
                     precaution.innerHTML = "It's cold, please wear tight clothes and wear moisturizer while going out";
+
+
+                    warning.style.color = "red";
+                    warning.innerHTML = "warning";
                 }
                 else
                 {
@@ -178,6 +223,7 @@
                 const temp_f = `${9/5*Number(tempr)+32}`;
                 if (format==="Celsius")
                 {
+                    weather.innerHTML = "Weather : Snowstorm";
                     place.innerHTML = `Place : ${city}`;
                     temp.innerHTML = `Temperature : ${tempr} C`;
                     humidity.innerHTML = "Humidity : 35%";
@@ -185,6 +231,7 @@
                 }
                 else
                 {
+                    weather.innerHTML = "Weather : Snowstorm";
                     place.innerHTML = `Place : ${city}`;
                     temp.innerHTML = `Temperature : ${Number(temp_f).toFixed(1)} °F`;                    
                     humidity.innerHTML = "Humidity : 35%";
@@ -196,11 +243,20 @@
                 {
                     precaution.style.backgroundColor = "red";
                     precaution.innerHTML = "It's hot, please wear loose clothes and wear sunscreen while going out";
+
+
+
+                    warning.style.color = "red";
+                    warning.innerHTML = "warning";
                 }
                 else if (Number(tempr)<=20)
                 {
                     precaution.style.backgroundColor = "red";
                     precaution.innerHTML = "It's cold, please wear tight clothes and wear moisturizer while going out";
+
+
+                    warning.style.color = "red";
+                    warning.innerHTML = "warning";
                 }
                 else
                 {
@@ -215,6 +271,7 @@
                 const temp_f = `${9/5*Number(tempr)+32}`;
                 if (format==="Celsius")
                 {
+                    weather.innerHTML = "Weather : Sunny";
                     place.innerHTML = `Place : ${city}`;
                     temp.innerHTML = `Temperature : ${tempr} C`;
                     humidity.innerHTML = "Humidity : 35%";
@@ -222,6 +279,7 @@
                 }
                 else
                 {
+                    weather.innerHTML = "Weather : Sunny";
                     place.innerHTML = `Place : ${city}`;
                     temp.innerHTML = `Temperature : ${Number(temp_f).toFixed(1)} °F`;                    
                     humidity.innerHTML = "Humidity : 35%";
@@ -234,19 +292,24 @@
                 {
                     precaution.style.backgroundColor = "red";
                     precaution.innerHTML = "It's hot, please wear loose clothes and wear sunscreen while going out";
+
+                    warning.style.color = "red";
+                    warning.innerHTML = "warning";
                 }
                 else if (Number(tempr)<=20)
                 {
                     precaution.style.backgroundColor = "red";
                     precaution.innerHTML = "It's cold, please wear tight clothes and wear moisturizer while going out";
+
+
+                    warning.style.color = "red";
+                    warning.innerHTML = "warning";
                 }
                 else
                 {
                     precaution.style.backgroundColor = "#90EE90";
                     precaution.innerHTML = "Enjoy the pleasent weather";    
                 }
-
-
             }
         }
     </script>

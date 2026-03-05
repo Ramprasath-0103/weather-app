@@ -1,0 +1,80 @@
+body {
+    background-color: #bdac5b;
+}
+
+
+#app-background
+{
+    background-color: #f08b0f;
+}
+
+#weather-forecast
+{
+    background-color: #fec91a;
+    color:  #78300d;
+}
+
+#unit-temperature
+{
+    background-color: #FFC300;
+    padding-left: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: double 10px white;
+    border-radius: 10px;
+    color:  #78300d;
+}
+
+#search-city
+{
+    background-color: #FFC300;
+    padding-left: 30px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    border: groove 10px white;
+    border-radius: 10px;
+    color: #78300d;
+
+}
+
+#current-weather
+{
+    background-color: #FFC300;
+    color:  #78300d;
+    font-size: 24px;
+}
+
+.warning
+{
+    padding: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    
+}
+
+
+
+#weather-box
+{
+    background-color: #FFC300;
+    color:  #78300d;
+}
+
+img
+{
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+
+.submit-button
+{
+    animation: ram 1.5s linear infinite;
+    background-color: whitesmoke;
+}
+
+@keyframes ram {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}

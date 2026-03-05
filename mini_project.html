@@ -2,93 +2,97 @@
 <head>
 
     <title>Weather-App(24BCE0176)</title>
-    <link rel="stylesheet" href="project.css"/>
+
+    <link id="theme" rel="stylesheet" href="project.css"/>
 
     <style>
 
         #container
         {
-            display:flex;
-            gap:10px;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            gap: 5px;
         }
 
         .box
         {
-            background:lightblue;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            height:200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
         }
 
     </style>
 </head> 
 <body style="display: flex; justify-content: center; ">
    
-    <div style="display:block; justify-content: center;padding: 30px; border: 2px solid white; border-radius: 20px; margin: 100px; width:45%" id="app-background"> 
+    <div style="display:block; justify-content: center;padding: 30px; border: 2px solid white; border-radius: 20px; margin: 100px; width:45%; " id="app-background"> 
         <div style="border: white 10px double;border-radius: 10px; padding: 5px 45px;" id="weather-forecast"> 
-            <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Times, serif; font-size: 40px;text-align: center; font-weight:700;">Weather App</p>
+            <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Times, serif; font-size: 40px;text-align: center; font-weight:700;">&rightarrow;Weather App&leftarrow;</p>
         </div>
         <br>
         <form>
             <div id="unit-temperature">
-            <p>UNIT FOR TEMPERATURE</p>
+            <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Times, serif; font-size: 18px;text-align: left; font-weight:700; " >UNIT FOR TEMPERATURE</p>
             <input type="radio" name="temperature" value="Celsius" id="w-celsius">
-            <label style="font-size: 20px;">Celsius</label>
+            <label style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Times, serif; font-size: 18px;text-align: left; font-weight:700;">Celsius</label>
             <input type="radio" name="temperature" value="Fahrenheit" id="w-fahrenheit">
-            <label style="font-size: 20px;">Fahrenheit</label>
+            <label style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Times, serif; font-size: 18px;text-align: left; font-weight:700;">Fahrenheit</label>
             </div>
         <br> 
         <br>
-        <legend style="font-size: 32px;margin-left: 30px;">Search City</legend>
-        <br>
-        <select style="height: 25px;width: 105;margin-left: 30px; padding-right: 10px; " name="City">
+        <div id="search-city">
+        <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Times, serif; font-size: 30px; font-weight:700;margin-left: 30px;">Search City</p>
+        <select style="height: 35px;width: 125;margin-left: 30px; padding-right: 10px; font-family: 'Courier New', Courier, monospace; font-size: 20px; " name="City">
             <option>Chennai</option>
             <option>Shimla</option>
             <option>Trichy</option>
             <option>Bangalore</option>
         </select>
-        <input style="margin-left: 10px;" type="button" value="Submit" onclick="DisplayWeather(this.form)"/>
+        <input style="margin-left: 10px; height:35px;width: 105px ;" type="button" value="Submit" onclick="DisplayWeather(this.form)" class="submit-button"/>
+
+        </div>
         </form>
         <br>
         <br>
         <br>
-        <div style="border:1px solid white;border-radius:15px;margin: 35px;background-color: azure;">
-            <p style="font-family: 'Times New Roman', Times, serif; font-size: 32px;text-align: center;">Current Weather</p>
+
+        <div id="current-weather" style="border:1px solid white;border-radius:15px;margin: 35px">
+            <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Times, serif; font-size: 40px;text-align: center; font-weight:700;">&centerdot;&nbsp;Current Weather&nbsp;&centerdot;</p>
             <br>
             <hr>
-            <p style="margin-left:30px; font-size: 20px;" id="weather"></p>
-            <p style="margin-left:30px; font-size: 20px;" id="place"></p>
-            <p style="margin-left:30px; font-size: 20px;" id="temperature"></p>
-            <p style="margin-left:30px; font-size: 20px;" id="Humidity"></p>
-            <p style="margin-left:30px; font-size: 20px;" id="Wind"></p>
+            <ul>
+            <li style="margin-left:30px; " id="weather"></li>
+            <li style="margin-left:30px; " id="place"></li>
+            <li style="margin-left:30px; " id="temperature"></li>
+            <li style="margin-left:30px; " id="Humidity"></li>
+            <li style="margin-left:30px; " id="Wind"></li>
+            </ul>
         </div>
         <br>
-        <div>
-            <p  id="warning"></p>
-        </div>
-        <div>
-            <p style="border:1px solid white;border-radius:15px;margin: 35px;height: 45px;   display:flex;align-items:center;justify-content:center;margin-top: 5px;" id="precaution"></p>
+
+            <b><p style="margin:30px; font-size:30px;" id="warning"></p></b>
+
+        <div id="warning-board">
+            <p  class="warning" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Times, serif; font-size: 18px;text-align: left; margin-left: 30px;" id="precaution"></p>
         </div>
         <hr>
-        <div style="border:1px solid white;border-radius:15px;margin: 35px;background-color: azure;">
-            <p style="font-family: 'Times New Roman', Times, serif; font-size: 32px;text-align: center;">5 Day Forecast </p>
+        <div id="weather-box" style="border:1px solid white;border-radius:15px;margin: 35px;">
+            <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Times, serif; font-size: 40px;text-align: left; font-weight:700;text-align: center;">4 Day Forecast </p>
 
             <div id="container">
                 <div class="box" id="box-1">
-                    <img src="weather-forecast/box-1.png" height="185px"/>
+                    <img src="box-1.png" height="185px" width="160px"/>
                 </div>
                 <div class="box" id="box-2">
-                    <img src="weather-forecast/box-2.png" height="185px"/>
+                    <img src="box-2.png" height="185px" width="160px"/>
                 </div>
                 <div class="box" id="box-3">
-                    <img src="weather-forecast/box-3.png" height="185px"/>
+                    <img src="box-3.png" height="185px" width="160px"/>
                 </div>
                 <div class="box" id="box-4">
-                    <img src="weather-forecast/box-4.png" height="185px"/>
-                </div>
-                <div class="box" id="box-5">
-                    <img src="weather-forecast/box-5.png" height="185px"/>
+                    <img src="box-4.png" height="185px" width="160px"/>
                 </div>
             </div>
 
@@ -114,6 +118,7 @@
             const precaution = document.getElementById("precaution");
             const warning = document.getElementById("warning");
             const weather = document.getElementById("weather");
+            const theme = document.getElementById("theme");
 
             if (!format)
             {
@@ -143,26 +148,29 @@
                 }
 
 
+                theme.href="sunny.css";
 
-                if (Number(tempr)>=38)
+
+
+                if (Number(tempr)>=36)
                 {
 
-                    precaution.style.backgroundColor = "red";
+                    precaution.style.backgroundColor = "rgb(193, 112, 112)";
                     precaution.innerHTML = "It's hot, please wear loose clothes and wear sunscreen while going out";
 
 
-                    warning.innerHTML = "warning";
+                    warning.innerHTML = "Warning:";
                 }
                 else if (Number(tempr)<=20)
                 {
-                    precaution.style.backgroundColor = "red";
+                    precaution.style.backgroundColor = "rgb(193, 112, 112)";
                     precaution.innerHTML = "It's cold, please wear tight clothes and wear moisturizer while going out";
 
-                    warning.innerHTML = "warning";
+                    warning.innerHTML = "Warning:";
                 }
                 else
                 {
-                    precaution.style.backgroundColor = "green";
+                    precaution.style.backgroundColor = "rgb(103, 150, 103)";
                     precaution.innerHTML = "Enjoy the pleasent weather";    
                 }
 
@@ -173,6 +181,9 @@
                 weather.innerHTML = "Weather : Cloudy";
                 const tempr = "21.5";
                 const temp_f = `${9/5*Number(tempr)+32}`;
+
+                theme.href="project.css";
+
                 if (format==="Celsius")
                 {
                     place.innerHTML = `Place : ${city}`;
@@ -190,30 +201,8 @@
                 }
 
 
-
-                if (Number(tempr)>=38)
-                {
-                    precaution.style.backgroundColor = "red";
-                    precaution.innerHTML = "It's hot, please wear loose clothes and wear sunscreen while going out";
-
-
-                    warning.style.color = "red";
-                    warning.innerHTML = "warning";
-                }
-                else if (Number(tempr)<=20)
-                {
-                    precaution.style.backgroundColor = "red";
-                    precaution.innerHTML = "It's cold, please wear tight clothes and wear moisturizer while going out";
-
-
-                    warning.style.color = "red";
-                    warning.innerHTML = "warning";
-                }
-                else
-                {
-                    precaution.style.backgroundColor = "green";
+                    precaution.style.backgroundColor = "rgb(103, 150, 103)";
                     precaution.innerHTML = "Enjoy the pleasent weather";    
-                }
 
 
             }
@@ -221,6 +210,8 @@
             {
                 const tempr = "17.2";
                 const temp_f = `${9/5*Number(tempr)+32}`;
+
+                theme.href="snowstorm.css";
                 if (format==="Celsius")
                 {
                     weather.innerHTML = "Weather : Snowstorm";
@@ -239,28 +230,25 @@
                 }
 
 
-                if (Number(tempr)>=38)
+                if (Number(tempr)>=36)
                 {
-                    precaution.style.backgroundColor = "red";
+                    precaution.style.backgroundColor = "rgb(193, 112, 112)";
                     precaution.innerHTML = "It's hot, please wear loose clothes and wear sunscreen while going out";
 
 
 
-                    warning.style.color = "red";
-                    warning.innerHTML = "warning";
+
+                    warning.innerHTML = "Warning:";
                 }
                 else if (Number(tempr)<=20)
                 {
-                    precaution.style.backgroundColor = "red";
+                    precaution.style.backgroundColor = "rgb(193, 112, 112)";
                     precaution.innerHTML = "It's cold, please wear tight clothes and wear moisturizer while going out";
-
-
-                    warning.style.color = "red";
-                    warning.innerHTML = "warning";
+                    warning.innerHTML = "Warning:";
                 }
                 else
                 {
-                    precaution.style.backgroundColor = "green";
+                    precaution.style.backgroundColor = "rgb(103, 150, 103)";
                     precaution.innerHTML = "Enjoy the pleasent weather";    
                 }
 
@@ -269,6 +257,8 @@
             {
                 const tempr = "39.7";
                 const temp_f = `${9/5*Number(tempr)+32}`;
+
+                theme.href="sunny.css";
                 if (format==="Celsius")
                 {
                     weather.innerHTML = "Weather : Sunny";
@@ -288,22 +278,22 @@
 
 
 
-                if (Number(tempr)>=38)
+                if (Number(tempr)>=36)
                 {
-                    precaution.style.backgroundColor = "red";
+                    precaution.style.backgroundColor = "rgb(193, 112, 112)";
                     precaution.innerHTML = "It's hot, please wear loose clothes and wear sunscreen while going out";
 
-                    warning.style.color = "red";
-                    warning.innerHTML = "warning";
+
+                    warning.innerHTML = "Warning:";
                 }
                 else if (Number(tempr)<=20)
                 {
-                    precaution.style.backgroundColor = "red";
+                    precaution.style.backgroundColor = "rgb(193, 112, 112)";
                     precaution.innerHTML = "It's cold, please wear tight clothes and wear moisturizer while going out";
 
 
-                    warning.style.color = "red";
-                    warning.innerHTML = "warning";
+
+                    warning.innerHTML = "Warning:";
                 }
                 else
                 {

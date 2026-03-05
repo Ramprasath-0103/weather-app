@@ -1,21 +1,80 @@
 body {
-    background-image: url("sky.jpg");
+    background-color: #a38f6b;
 }
 
 
 #app-background
 {
-    background-color: #8E977D;
+    background-color: #576a34;
 }
 
 #weather-forecast
 {
     background-color: #DBCEA5;
-    color: #8A7650;
-    -webkit-text-stroke: 1px black;
+    color:  #38280b;
 }
 
 #unit-temperature
 {
+    background-color: #DBCEA5;
+    padding-left: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: double 10px white;
+    border-radius: 10px;
+    color:  #38280b;
+}
+
+#search-city
+{
+    background-color: #DBCEA5;
+    padding-left: 30px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    border: groove 10px white;
+    border-radius: 10px;
+    color: #38280b;
+
+}
+
+#current-weather
+{
+    background-color: #DBCEA5;
+    color:  #38280b;
+    font-size: 24px;
+}
+
+.warning
+{
+    padding: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     
+}
+
+
+
+#weather-box
+{
+    background-color: #DBCEA5;
+    color:  #38280b;
+}
+
+img
+{
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+
+.submit-button
+{
+    animation: ram 1.5s linear infinite;
+    background-color: whitesmoke;
+}
+
+@keyframes ram {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
 }
